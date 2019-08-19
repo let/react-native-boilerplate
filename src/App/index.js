@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-
-import AppNavigatorContainer from "./navigations";
-import NavigationService from "./utils/NavigationService";
+import { connect } from "react-redux";
+import AppNavigatorContainer from "../navigations";
+import NavigationService from "../utils/NavigationService";
 
 class GlobalApp extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   render() {
@@ -23,4 +22,7 @@ class GlobalApp extends Component {
   }
 }
 
-export default GlobalApp;
+export default connect(
+  null,
+  null
+)(GlobalApp);

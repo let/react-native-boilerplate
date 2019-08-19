@@ -3,6 +3,7 @@ import { NavigationActions, StackActions } from "react-navigation";
 let _navigator;
 
 function setTopLevelNavigator(navigatorRef) {
+  console.warn("yüklendi");
   _navigator = navigatorRef;
 }
 

@@ -1,11 +1,15 @@
+import React from "react";
 import {
   createSwitchNavigator,
   createAppContainer,
   createStackNavigator
 } from "react-navigation";
+import { Transition } from "react-native-reanimated";
+import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
+import AppLoadPage from "../containers/apploadpage/apploadpage.component";
 import HomePage from "../containers/homepage/homepage.component";
-
-const MainSideNavigator = createSwitchNavigator(
+import LoginPage from "../containers/loginpage/loginpage.component";
+const MainSideNavigator = createStackNavigator(
   {
     HomePage: {
       screen: HomePage
@@ -16,12 +20,35 @@ const MainSideNavigator = createSwitchNavigator(
   }
 );
 
-const AppNavigator = createSwitchNavigator(
+const AuthNavigator = createSwitchNavigator(
   {
+    LoginPage: {
+      screen: LoginPage
+    }
+  },
+  {
+    initialRouteName: "LoginPage"
+  }
+);
+
+const AppNavigator = createAnimatedSwitchNavigator(
+  {
+    AppLoad: AppLoadPage,
+    AuthNavigator: AuthNavigator,
     MainSideNavigator: MainSideNavigator
   },
   {
-    initialRouteName: "MainSideNavigator"
+    initialRouteName: "AppLoad",
+    transition: (
+      <Transition.Together>
+        <Transition.Out
+          type="slide-right"
+          durationMs={400}
+          interpolation="linear"
+        />
+        <Transition.In type="slide-left" durationMs={500} />
+      </Transition.Together>
+    )
   }
 );
 

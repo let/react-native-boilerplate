@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import React, { useState } from "react";
 
 export const TextInput = () => {
-  const [value, changeValue] = useState("hakan");
+  const [value, changeValue] = useState();
   return (
     <TextInputStyled value={value} onChangeText={value => changeValue(value)} />
   );
