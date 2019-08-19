@@ -1,8 +1,11 @@
 import { LOG_IN, LOG_OUT } from "./loginpage.types";
 
-export function login() {
+export function login(value, resolve, reject) {
   return {
-    type: LOG_IN
+    type: LOG_IN,
+    value,
+    resolve,
+    reject
   };
 }
 

@@ -1,18 +1,18 @@
 import { takeLatest, put } from "redux-saga/effects";
-import { LOAD_DATA } from "./homepage.types";
-import { loadedData } from "./homepage.actions";
-
+import { LOG_IN } from "./loginpage.types";
 import ApiStore from "../../utils/request";
 
-export const loadDataSaga = function*(action) {
+export const loginSaga = function*({ value, resolve, reject }) {
   try {
     const response = yield ApiStore.additionalProducts.get(`/${action.value}`);
-    yield put(loadedData(response.data));
-  } catch (e) {}
+    resolve("resolve");
+  } catch (e) {
+    reject("reject");
+  }
 };
 
-const homepageSaga = function* homepageSaga() {
-  yield takeLatest(LOAD_DATA, loadDataSaga);
+const loginPageSaga = function* loginPageSaga() {
+  yield takeLatest(LOG_IN, loginSaga);
 };
 
-export default homepageSaga;
+export default loginPageSaga;

@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-
-export default class LoginPage extends Component {
+import { connect } from "react-redux";
+import { login } from "./loginpage.actions";
+import { log } from "handlebars";
+class LoginPage extends Component {
+  onPressLearnMore = () => {
+    //this.props.login.then()
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -35,3 +40,19 @@ const styles = StyleSheet.create({
     marginBottom: 5
   }
 });
+
+export function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    dispatch,
+    login: value => {
+      return new Promise((resolve, reject) =>
+        dispatch(login(value, resolve, reject))
+      );
+    }
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginPage);
